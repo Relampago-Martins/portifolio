@@ -2,6 +2,8 @@
 .stackingCards{
     --square-size: 150px;
     --gap: 8px;
+    --scale-increment: 0.05;
+    --tanslate-increment: 13%;
 
     position: relative;
     width: var(--square-size);
@@ -12,8 +14,8 @@
         inset: 0;
         display: flex;
         transition: transform 0.100s cubic-bezier(.25, .46, .45, .94);
-        transform:  translateY(calc(var(--offset) * -20px)) scale(calc( 1 - (var(--offset) * 0.1) ));
-        z-index: calc(100 - (var(--offset) * 1));
+        transform: scale(calc( 1 - (var(--index) * var(--scale-increment)) )) translateY(calc(var(--index) * var(--tanslate-increment)));
+        z-index: calc(var(--length) - var(--index));
         
         &::before {
             content: '';
@@ -27,7 +29,7 @@
     
     &:hover{
         .card{
-            transform: translateY(calc(var(--offset) * -110%)) scale(1);
+            transform: translateY(calc(var(--index) * 110%)) scale(1);
         }
     }
 }

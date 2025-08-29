@@ -3,19 +3,30 @@
 import styles from '@/entities/stacking-cards/styles.module.scss';
 import { useState } from 'react';
 
-export function StackingCards() {
+const LENGTH = 4;
+
+type StackingCardsProps = {
+    order?: 'ascending' | 'descending';
+};
+export function StackingCards({ order = 'ascending' }: StackingCardsProps) {
     const [selected, setSelected] = useState<number | null>(null);
 
     return (
-        <div className={`${styles.stackingCards}`}>
-            {Array.from({ length: 4 }, (_, i) => {
+        <div
+            className={`${styles.stackingCards}`}
+            style={{
+                ['--length' as string]: `${LENGTH}`,
+            }}
+        >
+            {Array.from({ length: LENGTH }, (_, i) => {
                 const isSelected = selected === i;
+                const index = order === 'ascending' ? i : LENGTH - 1 - i;
                 return (
                     <div
                         key={i}
-                        className={`${styles.card} relative`}
+                        className={`${styles.card} relative rounded-md ${isSelected ? '' : 'shadow-sm'}`}
                         style={{
-                            ['--offset' as string]: `${i}`,
+                            ['--index' as string]: `${index}`,
                         }}
                     >
                         {isSelected ? (
@@ -25,7 +36,7 @@ export function StackingCards() {
                             ></span>
                         ) : (
                             <button
-                                className={`bg-muted text-muted-foreground hover:text-foreground flex h-full w-full cursor-pointer items-center justify-center rounded-md border`}
+                                className={`bg-card text-muted-foreground hover:text-foreground flex h-full w-full cursor-pointer items-center justify-center rounded-md border`}
                                 onClick={() => setSelected(i)}
                             >
                                 {i + 1}

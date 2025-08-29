@@ -9,7 +9,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-    title: 'Prototipagem',
+    title: 'Portifólio',
     description: 'Meu portifólio',
 };
 
@@ -20,7 +20,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="pt-BR">
-            <body className={`${poppins.className} antialiased`}>
+            <body
+                className={`${poppins.className} bg-background my-30 antialiased`}
+            >
                 {children}
             </body>
         </html>

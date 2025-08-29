@@ -1,0 +1,33 @@
+
+.stackingCards{
+    --square-size: 150px;
+    --gap: 8px;
+
+    position: relative;
+    width: var(--square-size);
+    aspect-ratio: 2 / 1;
+
+    .card{
+        position: absolute;
+        inset: 0;
+        display: flex;
+        transition: transform 0.100s cubic-bezier(.25, .46, .45, .94);
+        transform:  translateY(calc(var(--offset) * -20px)) scale(calc( 1 - (var(--offset) * 0.1) ));
+        z-index: calc(100 - (var(--offset) * 1));
+        
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            height: calc(var(--gap) + 1px);
+            bottom: 100%;
+            width: 100%;
+        }
+    }
+    
+    &:hover{
+        .card{
+            transform: translateY(calc(var(--offset) * -110%)) scale(1);
+        }
+    }
+}

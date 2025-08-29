@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '@/entities/teste-de-animacoes/styles.module.scss';
+import styles from '@/entities/stacking-cards/styles.module.scss';
 import { useState } from 'react';
 
 export function StackingCards() {
